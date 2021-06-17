@@ -15,7 +15,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public showToolbar = false;
   public vars: object = {};
   public feedback = new Feedback();
-  public includeScreenshot: boolean = true;
+  public includeScreenshot: boolean = false;
   public showSpinner = true;
   public screenshotEle: HTMLElement;
   public drawCanvas: HTMLCanvasElement;
@@ -83,7 +83,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   @HostListener('document:keydown.escape', ['$event'])
   public onEscapeKeyDownHandler(evt: KeyboardEvent) {
     this.showToolbar = false;
-    this.includeScreenshot = true;
+    this.includeScreenshot = false;
     this.detector.detectChanges();
     this.dialogRef.close('key down esc to close');
   }
