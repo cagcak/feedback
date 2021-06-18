@@ -35,9 +35,9 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public isDrawingRect: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<FeedbackDialogComponent>,
-              private feedbackService: FeedbackService,
-              private detector: ChangeDetectorRef,
-              private el: ElementRef) {
+    private feedbackService: FeedbackService,
+    private detector: ChangeDetectorRef,
+    private el: ElementRef) {
     this.feedback = new Feedback();
     this.feedback.description = '';
     this.vars = this.feedbackService.initialVariables;
@@ -107,10 +107,14 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   public isIncludeScreenshot() {
     if (this.includeScreenshot) {
-      this.detector.detectChanges();
-      this.showSpinner = false;
-      this.appendScreenshot();
-      this.feedback.screenshot = this.screenshotEle.getAttribute('src');
+      this.feedbackService.initScreenshotCanvas();
+
+      setTimeout(() => {
+        this.detector.detectChanges();
+        this.showSpinner = false;
+        this.appendScreenshot();
+        this.feedback.screenshot = this.screenshotEle.getAttribute('src');
+      }, 1500);
     } else {
       delete this.feedback['screenshot'];
       this.showSpinner = true;
@@ -166,9 +170,9 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   private addCanvasListeners(): void {
     const mouseUp = fromEvent(document.documentElement, 'mouseup'),
-          mouseMove = fromEvent(document.documentElement, 'mousemove'),
-          mouseDown = fromEvent(document.documentElement, 'mousedown'),
-          scroll = fromEvent(window, 'scroll');
+      mouseMove = fromEvent(document.documentElement, 'mousemove'),
+      mouseDown = fromEvent(document.documentElement, 'mousedown'),
+      scroll = fromEvent(window, 'scroll');
 
     this.manuallyDrawRect(mouseDown, mouseMove, mouseUp);
     this.autoDrawRect(mouseMove);
@@ -179,7 +183,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
     scroll.subscribe(
       event => {
         const currentWindowScrollX = window.scrollX,
-              currentWindowScrollY = window.scrollY;
+          currentWindowScrollY = window.scrollY;
         this.rectangles.forEach(rect => {
           rect.startY = rect.startY - (currentWindowScrollY - rect.windowScrollY);
           rect.startX = rect.startX - (currentWindowScrollX - rect.windowScrollX);
@@ -221,7 +225,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
             const rect = this.drawTempCanvasRectangle(mouseDownEvent);
             if (rect) { this.rectangles.push(rect); }
           } else {
-          // drag to draw rectangle
+            // drag to draw rectangle
             if (newRectangle.height < 0) {
               newRectangle.startY = newRectangle.startY + newRectangle.height;
               newRectangle.height = Math.abs(newRectangle.height);
@@ -267,9 +271,9 @@ export class FeedbackDialogComponent implements AfterViewInit {
   private drawTempCanvasRectangle(event: MouseEvent) {
     let rectangle: Rectangle = null;
     const clientX = event.clientX,
-          clientY = event.clientY,
-          els = document.elementsFromPoint(clientX, clientY),
-          el = els[2];
+      clientY = event.clientY,
+      els = document.elementsFromPoint(clientX, clientY),
+      el = els[2];
     if ((!this.isExcludeRect(els)) && el && this.elCouldBeHighlighted.indexOf(el.nodeName.toLowerCase()) > -1) {
       rectangle = new Rectangle();
       const rect = el.getBoundingClientRect();
@@ -295,7 +299,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   }
 
   private isExcludeRect(elements: Element[]): boolean {
-    const result = elements.some( el => {
+    const result = elements.some(el => {
       return el.getAttribute('exclude-rect') === 'true';
     });
     return result;

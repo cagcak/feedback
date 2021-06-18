@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FeedbackDialogComponent } from './feedback-dialog/feedback-dialog.component';
 import { FeedbackService } from './feedback.service';
 
-@Directive({selector: '[feedback]'})
+@Directive({ selector: '[feedback]' })
 export class FeedbackDirective implements OnInit {
   private overlay: Overlay;
   @Input() title: string = 'Send feedback';
@@ -35,7 +35,8 @@ export class FeedbackDirective implements OnInit {
   }
 
   public openFeedbackDialog() {
-    this.feedbackService.initScreenshotCanvas();
+    // this.feedbackService.initScreenshotCanvas();
+
     this.dialogRef.open(FeedbackDialogComponent, {
       panelClass: 'feedbackDialog',
       backdropClass: 'dialogBackDrop',
