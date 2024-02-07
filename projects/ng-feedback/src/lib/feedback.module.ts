@@ -15,32 +15,29 @@ import { FeedbackService } from './feedback.service';
 import { FeedbackDirective } from './feedback.directive';
 
 @NgModule({
-  declarations: [
-    FeedbackDialogComponent,
-    FeedbackToolbarComponent,
-    FeedbackRectangleComponent,
-    FeedbackDirective
-  ],
-  imports: [
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatTooltipModule,
-    CommonModule,
-    FormsModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule
-  ],
-  exports: [
-    FeedbackDirective
-  ],
-  entryComponents: [
-    FeedbackDialogComponent
-  ],
-  providers: [
-    FeedbackService
-  ]
+    declarations: [
+        FeedbackDialogComponent,
+        FeedbackToolbarComponent,
+        FeedbackRectangleComponent,
+        FeedbackDirective
+    ],
+    imports: [
+        MatDialogModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatTooltipModule,
+        CommonModule,
+        FormsModule,
+        MatCheckboxModule,
+        MatProgressSpinnerModule
+    ],
+    exports: [
+        FeedbackDirective
+    ],
+    providers: [
+        FeedbackService
+    ]
 })
 export class FeedbackModule {
 }
