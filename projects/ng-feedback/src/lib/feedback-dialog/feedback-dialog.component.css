@@ -181,10 +181,20 @@
   padding: 0;
   overflow: visible;
   background-color: rgba(255, 255, 255, 0);
-  box-shadow: initial;
+  box-shadow: none !important;
 }
 
-.toolbar-tips {
+::ng-deep .feedbackDialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: initial !important;
+  position: initial !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .feedbackDialog .mat-mdc-dialog-surface {
+  overflow: hidden !important;
+}
+
+::ng-deep .toolbar-tips {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 12px;
   color: rgb(117, 117, 117);
