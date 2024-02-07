@@ -109,7 +109,6 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ng-feedback/tsconfig.lib.json",
-            "allowedCommonJsDependencies": ["html2canvas"],
             "project": "projects/ng-feedback/ng-package.json"
           },
           "configurations": {
