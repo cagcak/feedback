@@ -1,6 +1,6 @@
 import { Directive, HostListener, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { FeedbackDialogComponent } from './feedback-dialog/feedback-dialog.component';
 import { FeedbackService } from './feedback.service';
 
