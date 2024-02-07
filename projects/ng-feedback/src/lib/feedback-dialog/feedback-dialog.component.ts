@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener } from '@angular/core';
 import { Observable, Subscription, fromEvent } from 'rxjs';
 import { takeUntil, finalize, map, mergeMap } from 'rxjs/operators';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Feedback } from '../entity/feedback';
 import { Rectangle } from '../entity/rectangle';
 import { FeedbackService } from '../feedback.service';

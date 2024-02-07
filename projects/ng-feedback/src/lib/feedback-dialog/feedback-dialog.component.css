@@ -173,11 +173,11 @@
   right: 0;
 }
 
-.mat-dialog-actions {
+.mat-mdc-dialog-actions {
   padding: 0 !important;
 }
 
-::ng-deep .feedbackDialog .mat-dialog-container {
+::ng-deep .feedbackDialog .mat-mdc-dialog-container {
   padding: 0;
   overflow: visible;
   background-color: rgba(255, 255, 255, 0);
